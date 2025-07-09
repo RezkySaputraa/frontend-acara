@@ -1,4 +1,3 @@
-import PageHead from "@/components/commons/PageHead";
 import { Button } from "@heroui/button";
 
 export default function Page() {
