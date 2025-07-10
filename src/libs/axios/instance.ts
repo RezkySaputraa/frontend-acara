@@ -19,21 +19,16 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (request) => {
-    const session : CustomSession | null = await getSession();
-    if (session && session.accessToken) {
-      request.headers.Authorization = `Bearer ${session.accessToken}`;
-    }
-
     return request;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 instance.interceptors.response.use(
   async (response) => {
     return response;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 export default instance;

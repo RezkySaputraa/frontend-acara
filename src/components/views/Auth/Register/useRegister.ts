@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IRegister } from "@/types/Auth";
-import authServices from "@/services/auth";
+import authServices from "@/services/auth.service";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
@@ -48,8 +48,12 @@ const useRegister = () => {
   });
 
   const registerService = async (payload: IRegister) => {
-    const result = await authServices.register(payload);
-    return result;
+    try {
+      const result = await authServices.register(payload);
+      return result;
+    } catch (error) {
+      console.log("❌ Registration API error:", error);
+    }
   };
 
   const { mutate: mutateRegister, isPending: isPendingRegister } = useMutation({

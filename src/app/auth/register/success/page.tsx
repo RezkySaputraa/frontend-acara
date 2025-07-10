@@ -1,3 +1,5 @@
+import Register from "@/components/views/Auth/Register";
+import RegisterSuccess from "@/components/views/Auth/RegisterSuccess";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const RegisterSuccessPage = () => {
-  return <h1>Register Success</h1>;
+  return <RegisterSuccess></RegisterSuccess>;
 };
 
 export default RegisterSuccessPage;

@@ -55,7 +55,10 @@ const Register = () => {
             </p>
           )}
           <form
-            className={cn("flex w-80 flex-col", Object.keys(errors).length > 0 ? "gap-2" : "gap-4")}
+            className={cn(
+              "flex w-80 flex-col",
+              Object.keys(errors).length > 0 ? "gap-2" : "gap-4",
+            )}
             onSubmit={handleSubmit(handleRegister)}
           >
             <Controller
