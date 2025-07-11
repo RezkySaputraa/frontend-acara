@@ -5,7 +5,6 @@ import { Providers } from "./providers";
 import { cn } from "@/utils/cn";
 import { ReactQueryProvider } from "./queryclient";
 import { SessionProvider } from "next-auth/react";
-import { auth } from "../auth";
 
 const inter = Inter({
   variable: "--font-inter",
