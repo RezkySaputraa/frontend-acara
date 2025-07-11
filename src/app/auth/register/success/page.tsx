@@ -1,4 +1,3 @@
-import Register from "@/components/views/Auth/Register";
 import RegisterSuccess from "@/components/views/Auth/RegisterSuccess";
 import { Metadata } from "next";
 
