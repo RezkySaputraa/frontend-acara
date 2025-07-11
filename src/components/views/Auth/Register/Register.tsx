@@ -41,8 +41,8 @@ const Register = () => {
       </div>
       <Card>
         <CardBody className="p-8">
-          <h2 className="text-xl font-bold text-danger-500">Create Account</h2>
-          <p className="mb-4 text-sm">
+          <h2 className="text-2xl font-bold text-danger-500">Create Account</h2>
+          <p className="mt-2 mb-4 text-sm">
             Have an account? &nbsp;
             <Link href="/auth/login" className="font-semibold text-danger-400">
               Login here

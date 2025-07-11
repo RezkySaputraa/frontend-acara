@@ -4,6 +4,8 @@ import "@/styles/globals.css";
 import { Providers } from "./providers";
 import { cn } from "@/utils/cn";
 import { ReactQueryProvider } from "./queryclient";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "../auth";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,12 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${cn(inter.className, "flex min-h-screen min-w-full flex-col items-center justify-center gap-10 py-10 antialiased lg:py-0")}`}
-      >
-        <ReactQueryProvider>
-          <Providers>{children}</Providers>
-        </ReactQueryProvider>
+      <body className={cn(inter.className)}>
+        <SessionProvider>
+          <ReactQueryProvider>
+            <Providers>{children}</Providers>
+          </ReactQueryProvider>
+        </SessionProvider>
       </body>
     </html>
   );
