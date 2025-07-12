@@ -21,7 +21,7 @@ const useLogin = () => {
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const callbackUrl: string = searchParams.get("callbackUrl") || "/";
+  const redirectTo: string = searchParams.get("callbackUrl") || "/";
 
   const {
     control,
@@ -37,7 +37,7 @@ const useLogin = () => {
     const result = await signIn("credentials", {
       ...payload,
       redirect: false,
-      callbackUrl,
+      redirectTo,
     });
 
     if (result?.error) {
@@ -53,7 +53,7 @@ const useLogin = () => {
       });
     },
     onSuccess() {
-      router.push(callbackUrl);
+      router.push(redirectTo);
       reset();
     },
   });

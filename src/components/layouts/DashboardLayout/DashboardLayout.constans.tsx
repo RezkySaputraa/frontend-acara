@@ -1,4 +1,11 @@
-import { CiBookmark, CiGrid41, CiSettings, CiShoppingTag, CiViewList, CiWallet } from "react-icons/ci";
+import {
+  CiBookmark,
+  CiGrid41,
+  CiSettings,
+  CiShoppingTag,
+  CiViewList,
+  CiWallet,
+} from "react-icons/ci";
 
 const SIDEBAR_MEMBER = [
   {

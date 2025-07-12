@@ -1,21 +1,21 @@
+import { auth } from "@/auth";
 import environment from "@/config/environment";
 import { SessionExtended } from "@/types/Auth";
 import axios from "axios";
-import { getSession } from "next-auth/react";
 
 const headers = {
   "Content-Type": "application/json",
 };
 
-const instance = axios.create({
+const serverInstance = axios.create({
   baseURL: environment.API_URL,
   headers,
   timeout: 60 * 1000,
 });
 
-instance.interceptors.request.use(
+serverInstance.interceptors.request.use(
   async (request) => {
-    const session: SessionExtended | null = await getSession();
+    const session: SessionExtended | null = await auth();
     if (session && session.accessToken) {
       request.headers.Authorization = `Bearer ${session.accessToken}`;
     }
@@ -24,11 +24,11 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-instance.interceptors.response.use(
+serverInstance.interceptors.response.use(
   async (response) => {
     return response;
   },
   (error) => Promise.reject(error),
 );
 
-export default instance;
+export default serverInstance;
