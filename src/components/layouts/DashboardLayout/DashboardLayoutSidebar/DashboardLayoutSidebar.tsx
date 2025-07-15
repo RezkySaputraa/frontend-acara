@@ -5,6 +5,7 @@ import { Button } from "@heroui/button";
 import { Listbox, ListboxItem } from "@heroui/listbox";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { JSX } from "react";
 import { CiLogout } from "react-icons/ci";
@@ -55,9 +56,11 @@ const DashboardLayoutSidebar = (props: PropTypes) => {
                 "bg-danger-500 text-white": pathname.startsWith(item.href),
               })}
               startContent={item.icon}
-              textValue={item.label}
               aria-labelledby={item.label}
               aria-describedby={item.label}
+              // textValue={item.label} //waspada lah disini bisa error ggra ini ada
+              as={Link}
+              href={item.href}
             >
               <p className="text-small">{item.label}</p>
             </ListboxItem>
