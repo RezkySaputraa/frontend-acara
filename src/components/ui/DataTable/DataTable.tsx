@@ -13,7 +13,7 @@ import {
 import { ChangeEvent, Key, ReactNode, useMemo } from "react";
 import { CiSearch } from "react-icons/ci";
 import { Select, SelectItem } from "@heroui/select";
-import { LIMIT_LISTS } from "@/contants/list,contants";
+import { LIMIT_LISTS } from "@/contants/list.contants";
 import { Pagination } from "@heroui/pagination";
 import { Spinner } from "@heroui/react";
 import { cn } from "@/utils/cn";
@@ -80,7 +80,7 @@ const DataTable = (props: PropTypes) => {
 
   const BottomContent = useMemo(() => {
     return (
-      <div className="flex items-center justify-center px-2 py-2 lg:justify-between">
+      <div className="flex items-center justify-center lg:justify-between">
         <Select
           className="hidden max-w-36 lg:block"
           size="md"
@@ -88,6 +88,7 @@ const DataTable = (props: PropTypes) => {
           selectionMode="single"
           onChange={onChangeLimit}
           startContent={<p className="text-small">Show:</p>}
+          disallowEmptySelection
         >
           {LIMIT_LISTS.map((item) => (
             <SelectItem key={item.value} textValue={String(item.value)}>
@@ -95,14 +96,17 @@ const DataTable = (props: PropTypes) => {
             </SelectItem>
           ))}
         </Select>
-        <Pagination
-          isCompact
-          showControls
-          color="danger"
-          page={currentPage}
-          total={totalPages}
-          onChange={onChangePage}
-        ></Pagination>
+        {totalPages > 1 && (
+          <Pagination
+            isCompact
+            showControls
+            color="danger"
+            page={currentPage}
+            total={totalPages}
+            onChange={onChangePage}
+            loop
+          ></Pagination>
+        )}
       </div>
     );
   }, [limit, currentPage, totalPages, onChangeLimit, onChangePage]);

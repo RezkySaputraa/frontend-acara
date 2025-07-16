@@ -58,7 +58,7 @@ const DashboardLayoutSidebar = (props: PropTypes) => {
               startContent={item.icon}
               aria-labelledby={item.label}
               aria-describedby={item.label}
-              // textValue={item.label} //waspada lah disini bisa error ggra ini ada
+              // textValue={item.label} //waspada lah disini bisa error ggra ini gada
               as={Link}
               href={item.href}
             >

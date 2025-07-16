@@ -5,6 +5,8 @@ import { Providers } from "./providers";
 import { cn } from "@/utils/cn";
 import { ReactQueryProvider } from "./queryclient";
 import { SessionProvider } from "next-auth/react";
+import { ToasterProvider } from "@/contexts/ToasterContext";
+import AppShell from "@/components/commons/AppShell";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,7 +32,11 @@ export default function RootLayout({
       <body className={cn(inter.className)}>
         <SessionProvider>
           <ReactQueryProvider>
-            <Providers>{children}</Providers>
+            <Providers>
+              <ToasterProvider>
+                <AppShell>{children}</AppShell>
+              </ToasterProvider>
+            </Providers>
           </ReactQueryProvider>
         </SessionProvider>
       </body>
