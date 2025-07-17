@@ -3,13 +3,8 @@ import environment from "@/config/environment";
 import { SessionExtended } from "@/types/Auth";
 import axios from "axios";
 
-const headers = {
-  "Content-Type": "application/json",
-};
-
 const serverInstance = axios.create({
   baseURL: environment.API_URL,
-  headers,
   timeout: 60 * 1000,
 });
 

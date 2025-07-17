@@ -16,6 +16,8 @@ import { COLUMN_LISTS_CATEGORY } from "./Category.constants";
 import useCategory from "./useCategory";
 import { useSearchParams } from "next/navigation";
 import InputFile from "@/components/ui/InputFile";
+import AddCategoryModal from "./AddCategoryModal";
+import { useDisclosure } from "@heroui/use-disclosure";
 
 const Category = () => {
   const searchParams = useSearchParams();
@@ -31,7 +33,10 @@ const Category = () => {
     handleChangePage,
     handleSearch,
     handleClearSearch,
+    refetchCategory
   } = useCategory();
+
+  const addCategoryModal = useDisclosure();
 
   useEffect(() => {
     setURL();
@@ -93,13 +98,12 @@ const Category = () => {
           onChangePage={handleChangePage}
           onChangeSearch={handleSearch}
           onClearSearch={handleClearSearch}
-          onClickButtonTopContent={() => {}}
+          onClickButtonTopContent={addCategoryModal.onOpen}
           renderCell={renderCell}
           totalPages={dataCategory?.pagination.totalPages}
         />
       )}
-
-      <InputFile name="input" isDropable></InputFile>
+      <AddCategoryModal refetchCategory={refetchCategory} {...addCategoryModal} />
     </section>
   );
 };
