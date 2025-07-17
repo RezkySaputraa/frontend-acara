@@ -15,9 +15,9 @@ import { useRouter } from "next/navigation";
 import { COLUMN_LISTS_CATEGORY } from "./Category.constants";
 import useCategory from "./useCategory";
 import { useSearchParams } from "next/navigation";
-import InputFile from "@/components/ui/InputFile";
 import AddCategoryModal from "./AddCategoryModal";
 import { useDisclosure } from "@heroui/use-disclosure";
+import DeleteCategoryModal from "./DeleteCategoryModal";
 
 const Category = () => {
   const searchParams = useSearchParams();
@@ -33,10 +33,14 @@ const Category = () => {
     handleChangePage,
     handleSearch,
     handleClearSearch,
-    refetchCategory
+    refetchCategory,
+    selectedId,
+    setSelectedId,
   } = useCategory();
 
   const addCategoryModal = useDisclosure();
+
+  const deleteCategoryModal = useDisclosure();
 
   useEffect(() => {
     setURL();
@@ -47,10 +51,10 @@ const Category = () => {
       const cellValue = category[columnKey as keyof typeof category];
 
       switch (columnKey) {
-        // case "icon":
-        //   return (
-        //     <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
-        //   );
+        case "icon":
+          return (
+            <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
+          );
         case "actions":
           return (
             <Dropdown>
@@ -69,6 +73,10 @@ const Category = () => {
                 <DropdownItem
                   key={"delet-category-button"}
                   className="text-danger-500"
+                  onPress={() => {
+                    setSelectedId(`${category._id}`);
+                    deleteCategoryModal.onOpen();
+                  }}
                 >
                   Delete
                 </DropdownItem>
@@ -100,10 +108,20 @@ const Category = () => {
           onClearSearch={handleClearSearch}
           onClickButtonTopContent={addCategoryModal.onOpen}
           renderCell={renderCell}
-          totalPages={dataCategory?.pagination.totalPages}
+          totalPage={dataCategory?.pagination.totalPage}
         />
       )}
-      <AddCategoryModal refetchCategory={refetchCategory} {...addCategoryModal} />
+      <AddCategoryModal
+        refetchCategory={refetchCategory}
+        {...addCategoryModal}
+      />
+
+      <DeleteCategoryModal
+        {...deleteCategoryModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+        refetchCategory={refetchCategory}
+      />
     </section>
   );
 };

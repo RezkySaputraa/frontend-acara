@@ -3,9 +3,11 @@ import useDebounce from "@/hooks/useDebounce";
 import categoryServices from "@/services/category.service";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 
 const useCategory = () => {
+  const [selectedId, setSelectedId] = useState<string>("");
+
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -95,6 +97,9 @@ const useCategory = () => {
     handleSearch,
     handleClearSearch,
     refetchCategory,
+
+    selectedId,
+    setSelectedId,
   };
 };
 
