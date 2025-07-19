@@ -42,7 +42,7 @@ const useDetailCategory = () => {
       console.error("🔥 Error in updateCategory:", error);
       setToaster({ type: "error", message: error.message });
     },
-    onSuccess: (result) => {
+    onSuccess: () => {
       refetchCategory();
       setToaster({ type: "success", message: "Success update category" });
     },
