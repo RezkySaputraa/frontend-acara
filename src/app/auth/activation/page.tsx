@@ -18,7 +18,6 @@ export default async function ActivationPage({
       status = "failed";
     }
   } catch (error) {
-    console.log(" Activation API error:", error);
     status = "failed";
   }
 

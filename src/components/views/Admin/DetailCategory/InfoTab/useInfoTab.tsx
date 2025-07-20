@@ -16,6 +16,10 @@ const useInfoTab = () => {
     setValue: setValueUpdateInfo,
   } = useForm({
     resolver: yupResolver(schemaUpdateInfo),
+    defaultValues: {
+      name: "",
+      description: "",
+    },
   });
 
   return {

@@ -27,10 +27,13 @@ const InfoTab = (props: PropTypes) => {
   } = useInfoTab();
 
   useEffect(() => {
-    console.log("🚀 ~ dataCategory:", dataCategory);
-    setValueUpdateInfo("name", `${dataCategory?.name}`);
-    setValueUpdateInfo("description", `${dataCategory?.description}`);
-  }, [dataCategory]);
+    if (dataCategory) {
+      resetUpdateInfo({
+        name: dataCategory.name || "",
+        description: dataCategory.description || "",
+      });
+    }
+  }, [dataCategory, resetUpdateInfo]);
 
   useEffect(() => {
     if (isSuccessUpdate) {

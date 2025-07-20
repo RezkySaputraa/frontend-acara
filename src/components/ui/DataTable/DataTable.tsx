@@ -10,12 +10,12 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/table";
-import { ChangeEvent, Key, ReactNode, useMemo } from "react";
+import { Key, ReactNode, useMemo } from "react";
 import { CiSearch } from "react-icons/ci";
 import { Select, SelectItem } from "@heroui/select";
 import { LIMIT_LISTS } from "@/constants/list.contants";
 import { Pagination } from "@heroui/pagination";
-import { Spinner } from "@heroui/react";
+import { Spinner } from "@heroui/spinner";
 import { cn } from "@/utils/cn";
 import useChangeUrl from "@/hooks/useChangeUrl";
 

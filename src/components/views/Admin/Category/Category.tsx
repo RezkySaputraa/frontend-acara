@@ -1,16 +1,8 @@
 "use client";
 
 import DataTable from "@/components/ui/DataTable";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@heroui/dropdown";
-import { Button } from "@heroui/button";
 import Image from "next/image";
 import { Key, ReactNode, useCallback, useEffect } from "react";
-import { CiMenuKebab } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import { COLUMN_LISTS_CATEGORY } from "./Category.constants";
 import useCategory from "./useCategory";

@@ -17,7 +17,8 @@ const useDetailCategory = () => {
       const { data } = await categoryServices.getCategoryById(id);
       return data.data;
     } catch (error) {
-      return null;
+      console.error("Error fetching category:", error);
+      throw error;
     }
   };
   const { data: dataCategory, refetch: refetchCategory } = useQuery({
@@ -28,7 +29,6 @@ const useDetailCategory = () => {
 
   const updateCategory = async (payload: ICategory) => {
     const { data } = await categoryServices.updateCategory(id, payload);
-
     return data.data;
   };
 
@@ -39,7 +39,6 @@ const useDetailCategory = () => {
   } = useMutation({
     mutationFn: (payload: ICategory) => updateCategory(payload),
     onError: (error) => {
-      console.error("🔥 Error in updateCategory:", error);
       setToaster({ type: "error", message: error.message });
     },
     onSuccess: () => {

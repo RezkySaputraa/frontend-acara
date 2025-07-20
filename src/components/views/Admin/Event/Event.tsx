@@ -1,16 +1,8 @@
 "use client";
 
 import DataTable from "@/components/ui/DataTable";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@heroui/dropdown";
-import { Button } from "@heroui/button";
 import Image from "next/image";
 import { Key, ReactNode, useCallback, useEffect } from "react";
-import { CiMenuKebab } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import { COLUMN_LISTS_EVENT } from "./Event.constants";
 import useEvent from "./useEvent";
@@ -19,8 +11,9 @@ import { useDisclosure } from "@heroui/use-disclosure";
 import useChangeUrl from "@/hooks/useChangeUrl";
 import DropdownAction from "@/components/commons/DropdownAction";
 import { Chip } from "@heroui/chip";
+import AddEventModal from "./AddEventModal";
 
-const Category = () => {
+const Event = () => {
   const searchParams = useSearchParams();
   const { push } = useRouter();
   const {
@@ -71,7 +64,10 @@ const Category = () => {
           return (
             <DropdownAction
               onPressButtonDetail={() => push(`/admin/event/${event._id}`)}
-              onPressButtonDelete={() => setSelectedId(`${event._id}`)}
+              onPressButtonDelete={() => {
+                setSelectedId(`${event._id}`);
+                deleteEventModal.onOpen();
+              }}
             ></DropdownAction>
           );
 
@@ -86,7 +82,7 @@ const Category = () => {
     <section>
       {Array.from(searchParams.entries()).length > 0 && (
         <DataTable
-          buttonTopContentLabel="Create Category"
+          buttonTopContentLabel="Create Event"
           columns={COLUMN_LISTS_EVENT}
           data={dataEvents?.data || []}
           emptyContent="Event is empty"
@@ -96,8 +92,10 @@ const Category = () => {
           totalPage={dataEvents?.pagination.totalPage}
         />
       )}
+
+      <AddEventModal {...addEventModal} refetchEvents={refetchEvents} />
     </section>
   );
 };
 
-export default Category;
+export default Event;
