@@ -114,10 +114,10 @@ const useAddEventModal = () => {
       isFeatured: data.isFeatured === "true",
       isPublished: data.isPublished === "true",
       isOnline: data.isOnline === "true",
-      startDate: toDateStandar(data.startDate),
-      endDate: toDateStandar(data.endDate),
+      startDate: data.startDate ? toDateStandar(data.startDate) : '',
+      endDate: data.endDate ? toDateStandar(data.endDate) : '',
       location: {
-        region: data.region,
+        region: `${data.region}`,
         coordinates: [Number(data.latitude), Number(data.longitude)],
       },
       banner: data.banner,

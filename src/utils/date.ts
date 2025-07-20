@@ -7,28 +7,26 @@ const standardTime = (time: number) => {
   } else {
     return time;
   }
-}
+};
 
 const toDateStandar = (date: DateValue) => {
   const year = date.year;
   const month = date.month;
   const day = date.day;
 
-  const hour = "hour" in date ? date.hour : 0
-  const minute = "minute" in date ? date.minute : 0
-  const second = "second" in date ? date.second : 0
+  const hour = "hour" in date ? date.hour : 0;
+  const minute = "minute" in date ? date.minute : 0;
+  const second = "second" in date ? date.second : 0;
 
   const result = `${year}-${month}-${day} ${standardTime(hour)}:${standardTime(minute)}:${standardTime(second)}`;
 
   return result;
-}
+};
 
 const toInputDate = (date: string) => {
-  const formattedDate = parseAbsoluteToLocal(`${date.replace(" ", "T")}+07:00`);
+  const isoDateString = new Date(date).toISOString();
+  const formattedDate = parseAbsoluteToLocal(isoDateString);
   return formattedDate;
-}
+};
 
-export {
-  toDateStandar,
-  toInputDate
-}
+export { toDateStandar, toInputDate };
