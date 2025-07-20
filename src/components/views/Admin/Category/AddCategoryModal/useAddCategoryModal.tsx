@@ -39,13 +39,11 @@ const useAddCategoryModal = () => {
 
   const preview = watch("icon");
   const fileUrl = getValues("icon");
-
-  
   const addCategory = async (payload: ICategory) => {
     const res = await categoryServices.addCategory(payload);
     return res;
   };
-  
+
   const {
     mutate: mutateAddCategory,
     isPending: isPendingMutateAddCategory,
@@ -62,12 +60,12 @@ const useAddCategoryModal = () => {
       reset();
     },
   });
-  
+
   const handleAddCategory = (data: ICategory) => {
     console.log("⚡ handleAddCategory called with:", data);
     mutateAddCategory(data);
   };
-  
+
   const handleOnClose = (onClose: () => void) => {
     handleDeleteFile(fileUrl, () => {
       reset();
