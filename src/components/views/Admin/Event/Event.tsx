@@ -12,6 +12,7 @@ import useChangeUrl from "@/hooks/useChangeUrl";
 import DropdownAction from "@/components/commons/DropdownAction";
 import { Chip } from "@heroui/chip";
 import AddEventModal from "./AddEventModal";
+import DeleteEventModal from "./DeleteEventModal";
 
 const Event = () => {
   const searchParams = useSearchParams();
@@ -94,6 +95,13 @@ const Event = () => {
       )}
 
       <AddEventModal {...addEventModal} refetchEvents={refetchEvents} />
+
+      <DeleteEventModal
+        {...deleteEventModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+        refetchEvents={refetchEvents}
+      />
     </section>
   );
 };
