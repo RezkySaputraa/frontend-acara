@@ -1,6 +1,7 @@
 import Category from "@/components/views/Admin/Category";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Category",
@@ -14,7 +15,9 @@ const AdminCategoryPage = () => {
       title={typeof metadata.title === "string" ? metadata.title : "Category"}
       description="List of all categories, create new category, and manage existing categories"
     >
-      <Category></Category>
+      <Suspense>
+        <Category></Category>
+      </Suspense>
     </DashboardLayout>
   );
 };

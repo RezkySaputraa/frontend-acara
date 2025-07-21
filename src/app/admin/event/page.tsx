@@ -1,6 +1,7 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import { Metadata } from "next";
 import Event from "@/components/views/Admin/Event";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Event",
@@ -14,7 +15,9 @@ const AdminEventPage = () => {
       title={typeof metadata.title === "string" ? metadata.title : "Event"}
       description="List of all events, create new event, and manage existing events"
     >
-      <Event></Event>
+      <Suspense>
+        <Event></Event>
+      </Suspense>
     </DashboardLayout>
   );
 };
