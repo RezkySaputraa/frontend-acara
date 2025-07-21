@@ -6,7 +6,7 @@ import { Spinner } from "@heroui/spinner";
 import useInfoTab from "./useInfoTab";
 import { Controller } from "react-hook-form";
 import { useEffect } from "react";
-import { IEvent, IEventForm } from "@/types/Event";
+import { IEventForm } from "@/types/Event";
 import {
   Autocomplete,
   AutocompleteItem,

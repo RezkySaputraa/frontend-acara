@@ -1,9 +1,7 @@
 "use client";
 
 import { ToasterContext } from "@/contexts/ToasterContext";
-import categoryServices from "@/services/category.service";
 import eventServices from "@/services/event.service";
-import { ICategory } from "@/types/Category";
 import { IEvent, IEventForm } from "@/types/Event";
 import { toDateStandar } from "@/utils/date";
 import { useMutation, useQuery } from "@tanstack/react-query";

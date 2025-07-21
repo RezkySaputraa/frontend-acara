@@ -17,7 +17,7 @@ export default async function ActivationPage({
     } else {
       status = "failed";
     }
-  } catch (error) {
+  } catch {
     status = "failed";
   }
 

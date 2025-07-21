@@ -19,7 +19,6 @@ import { ICategory } from "@/types/Category";
 import { DatePicker } from "@heroui/date-picker";
 import { Select, SelectItem } from "@heroui/select";
 import { IRegency } from "@/types/Event";
-import { getLocalTimeZone, now } from "@internationalized/date";
 
 interface PropTypes {
   isOpen: boolean;
@@ -297,7 +296,7 @@ const AddEventModal = (props: PropTypes) => {
               <Controller
                 name="banner"
                 control={control}
-                render={({ field: { onChange, value, ...field } }) => (
+                render={({ field: { onChange, ...field } }) => (
                   <InputFile
                     {...field}
                     onUpload={(files) => handleUploadBanner(files, onChange)}

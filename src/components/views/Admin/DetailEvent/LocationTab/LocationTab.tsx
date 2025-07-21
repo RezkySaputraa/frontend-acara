@@ -1,19 +1,14 @@
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { Skeleton } from "@heroui/skeleton";
-import { Input, Textarea } from "@heroui/input";
+import { Input } from "@heroui/input";
 import { Spinner } from "@heroui/spinner";
 import useLocationTab from "./useLocationTab";
 import { Controller } from "react-hook-form";
 import { useEffect } from "react";
 import { IEventForm, IRegency } from "@/types/Event";
-import {
-  Autocomplete,
-  AutocompleteItem,
-  DatePicker,
-  Select,
-  SelectItem,
-} from "@heroui/react";
+import { Autocomplete, AutocompleteItem } from "@heroui/autocomplete";
+import { Select, SelectItem } from "@heroui/select";
 
 interface PropTypes {
   dataEvent: IEventForm;

@@ -23,7 +23,6 @@ const InfoTab = (props: PropTypes) => {
     handleSubmitUpdateInfo,
     errorsUpdateInfo,
     resetUpdateInfo,
-    setValueUpdateInfo,
   } = useInfoTab();
 
   useEffect(() => {

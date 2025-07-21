@@ -100,7 +100,7 @@ const AddCategoryModal = (props: PropTypes) => {
               <Controller
                 name="icon"
                 control={control}
-                render={({ field: { onChange, value, ...field } }) => (
+                render={({ field: { onChange, ...field } }) => (
                   <InputFile
                     {...field}
                     onUpload={(files) => handleUploadIcon(files, onChange)}

@@ -53,7 +53,9 @@ const CoverTab = (props: PropTypes) => {
           onSubmit={handleSubmitUpdateCover(onUpdate)}
         >
           <div className="flex flex-col gap-2">
-            <p className="text-sm font-medium text-default-700">Current Cover</p>
+            <p className="text-sm font-medium text-default-700">
+              Current Cover
+            </p>
             <Skeleton
               isLoaded={!!currentCover}
               className="rounded-lg aspect-video"
@@ -71,7 +73,7 @@ const CoverTab = (props: PropTypes) => {
           <Controller
             name="banner"
             control={controlUpdateCover}
-            render={({ field: { onChange, value, ...field } }) => (
+            render={({ field: { onChange, ...field } }) => (
               <InputFile
                 {...field}
                 onUpload={(files) => handleUploadCover(files, onChange)}

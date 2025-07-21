@@ -30,7 +30,6 @@ const useLogin = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    setError,
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -50,7 +49,7 @@ const useLogin = () => {
   const { mutate: mutateLogin, isPending: isPendingLogin } = useMutation({
     mutationFn: loginService,
     onError: (error) => {
-      setToaster({ type: "error", message: "Your Credentials is wrong" });
+      setToaster({ type: "error", message: error.message });
     },
     onSuccess: () => {
       reset();
