@@ -6,7 +6,7 @@ type Status = "success" | "failed";
 export default async function ActivationPage({
   searchParams,
 }: {
-  searchParams: { code: string };
+  searchParams: Promise<{ code: string }>;
 }) {
   const { code } = await searchParams;
   let status: Status = "success";
