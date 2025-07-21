@@ -74,11 +74,9 @@ const useAddEventModal = () => {
   } = useMutation({
     mutationFn: addEvent,
     onError: (error) => {
-      console.error("🔥 Error in addCategory:", error);
       setToaster({ type: "error", message: error.message });
     },
     onSuccess: () => {
-      console.log("✅ Success addCategory");
       setToaster({ type: "success", message: "Add category success" });
       reset();
     },

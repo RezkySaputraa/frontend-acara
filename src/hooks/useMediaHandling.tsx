@@ -13,7 +13,6 @@ const useMediaHandling = () => {
   ) => {
     const formData = new FormData();
     formData.append("file", file);
-    console.log("📦 File name:", file.name);
 
     const {
       data: {
@@ -30,7 +29,6 @@ const useMediaHandling = () => {
         callback: (fileUrl: string) => void;
       }) => uploadFile(variables.file, variables.callback),
       onError: (error) => {
-        console.error("🔥 Error in uploadIcon:", error);
         setToaster({ type: "error", message: error.message });
       },
     });
@@ -47,7 +45,6 @@ const useMediaHandling = () => {
       mutationFn: (variables: { fileUrl: string; callback: () => void }) =>
         deleteFile(variables.fileUrl, variables.callback),
       onError: (error) => {
-        console.error("🔥 Error in uploadIcon:", error);
         setToaster({ type: "error", message: error.message });
       },
     });
@@ -59,8 +56,6 @@ const useMediaHandling = () => {
   ) => {
     if (files.length !== 0) {
       onChange(files);
-      const file = files[0];
-      console.log("🔍 FILE YANG DIPILIH:", file);
       mutateUploadFile({
         file: files[0],
         callback,

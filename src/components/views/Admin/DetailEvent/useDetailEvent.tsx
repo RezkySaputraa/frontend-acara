@@ -20,7 +20,6 @@ const useDetailEvent = () => {
       const { data } = await eventServices.getEventById(id);
       return data.data;
     } catch (error) {
-      console.error("Error fetching category:", error);
       throw error;
     }
   };
@@ -32,7 +31,6 @@ const useDetailEvent = () => {
 
   const updateEvent = async (payload: IEvent) => {
     const { data } = await eventServices.updateEvent(id, payload);
-    console.log("🚀 ~ data:", data);
     return data.data;
   };
 
@@ -79,7 +77,7 @@ const useDetailEvent = () => {
 
   const { data: dataDefaultRegion, isPending: isPendingDefaultRegion } =
     useQuery({
-      queryKey: ["defaultRegion"],
+      queryKey: ["defaultRegion", dataEvent],
       queryFn: () => eventServices.getRegencyById(dataEvent?.location?.region),
       enabled: !!dataEvent?.location?.region,
     });

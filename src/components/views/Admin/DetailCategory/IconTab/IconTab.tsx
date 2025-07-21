@@ -56,7 +56,7 @@ const IconTab = (props: PropTypes) => {
             <p className="text-sm font-medium text-default-700">Current Icon</p>
             <Skeleton
               isLoaded={!!currentIcon}
-              className="rounded-lg aspect-square"
+              className="rounded-lg aspect-video"
             >
               {currentIcon && (
                 <Image

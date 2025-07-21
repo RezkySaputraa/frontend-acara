@@ -17,7 +17,6 @@ const useDetailCategory = () => {
       const { data } = await categoryServices.getCategoryById(id);
       return data.data;
     } catch (error) {
-      console.error("Error fetching category:", error);
       throw error;
     }
   };

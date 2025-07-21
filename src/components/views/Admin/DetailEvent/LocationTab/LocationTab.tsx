@@ -52,7 +52,7 @@ const LocationTab = (props: PropTypes) => {
         isOnline: `${dataEvent?.isOnline}`,
         latitude: `${dataEvent?.location?.coordinates[0]}`,
         longitude: `${dataEvent?.location?.coordinates[1]}`,
-        region: `${dataEvent?.location?.region}`,
+        region: `${dataDefaultRegion}`,
       });
     }
   }, [dataEvent, resetUpdateLocation]);
@@ -122,6 +122,7 @@ const LocationTab = (props: PropTypes) => {
               )}
             />
           </Skeleton>
+
           <Skeleton
             isLoaded={!!dataEvent?.location?.coordinates[1]}
             className="rounded-lg"
@@ -181,6 +182,7 @@ const LocationTab = (props: PropTypes) => {
               <div className="w-full h-16"></div>
             )}
           </Skeleton>
+
           <Button
             color="danger"
             className="mt-2 disabled:bg-default-500"

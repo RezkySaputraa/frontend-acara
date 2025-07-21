@@ -50,12 +50,8 @@ const useRegister = () => {
   });
 
   const registerService = async (payload: IRegister) => {
-    try {
-      const result = await authServices.register(payload);
-      return result;
-    } catch (error) {
-      console.log("❌ Registration API error:", error);
-    }
+    const result = await authServices.register(payload);
+    return result;
   };
 
   const { mutate: mutateRegister, isPending: isPendingRegister } = useMutation({

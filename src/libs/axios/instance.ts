@@ -14,13 +14,6 @@ instance.interceptors.request.use(
     if (session && session.accessToken) {
       request.headers.Authorization = `Bearer ${session.accessToken}`;
     }
-
-    console.log("🔍 Axios Request:");
-    console.log("URL:", request.baseURL, request.url);
-    console.log("Headers:", request.headers);
-    console.log("Method:", request.method);
-    console.log("Data:", request.data);
-
     return request;
   },
   (error) => Promise.reject(error),

@@ -51,18 +51,15 @@ const useAddCategoryModal = () => {
   } = useMutation({
     mutationFn: addCategory,
     onError: (error) => {
-      console.error("🔥 Error in addCategory:", error);
       setToaster({ type: "error", message: error.message });
     },
     onSuccess: () => {
-      console.log("✅ Success addCategory");
       setToaster({ type: "success", message: "Add category success" });
       reset();
     },
   });
 
   const handleAddCategory = (data: ICategory) => {
-    console.log("⚡ handleAddCategory called with:", data);
     mutateAddCategory(data);
   };
 
