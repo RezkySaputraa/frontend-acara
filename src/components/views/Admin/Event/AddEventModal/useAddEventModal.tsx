@@ -5,7 +5,7 @@ import useMediaHandling from "@/hooks/useMediaHandling";
 import categoryServices from "@/services/category.service";
 import eventServices from "@/services/event.service";
 import { IEvent, IEventForm } from "@/types/Event";
-import { toDateStandar } from "@/utils/date";
+import { toDateStandard } from "@/utils/date";
 import { DateValue } from "@heroui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getLocalTimeZone, now } from "@internationalized/date";
@@ -20,7 +20,7 @@ const schema = yup.object().shape({
   category: yup.string().required("Please select category "),
   startDate: yup.mixed<DateValue>().required("Please select start date "),
   endDate: yup.mixed<DateValue>().required("Please select end date "),
-  isPublished: yup.string().required("Please select status "),
+  isPublish: yup.string().required("Please select status "),
   isFeatured: yup.string().required("Please select featured "),
   description: yup.string().required("Please select description "),
   isOnline: yup.string().required("Please select online or offline"),
@@ -28,6 +28,7 @@ const schema = yup.object().shape({
   longitude: yup.string().required("Please input longitude coordinate "),
   latitude: yup.string().required("Please input latitude coordinate"),
   banner: yup.mixed<FileList | string>().required("Please input banner "),
+  address: yup.string().required("Please input address "),
 });
 
 const useAddEventModal = () => {
@@ -77,7 +78,7 @@ const useAddEventModal = () => {
       setToaster({ type: "error", message: error.message });
     },
     onSuccess: () => {
-      setToaster({ type: "success", message: "Add category success" });
+      setToaster({ type: "success", message: "Add event success" });
       reset();
     },
   });
@@ -110,11 +111,12 @@ const useAddEventModal = () => {
     const payload = {
       ...data,
       isFeatured: data.isFeatured === "true",
-      isPublished: data.isPublished === "true",
+      isPublish: data.isPublish === "true",
       isOnline: data.isOnline === "true",
-      startDate: data.startDate ? toDateStandar(data.startDate) : '',
-      endDate: data.endDate ? toDateStandar(data.endDate) : '',
+      startDate: data.startDate ? toDateStandard(data.startDate) : "",
+      endDate: data.endDate ? toDateStandard(data.endDate) : "",
       location: {
+        address: `${data.address}`,
         region: `${data.region}`,
         coordinates: [Number(data.latitude), Number(data.longitude)],
       },

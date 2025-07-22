@@ -44,11 +44,13 @@ const InfoTab = (props: PropTypes) => {
         category: dataEvent?.category,
         startDate: toInputDate(`${dataEvent?.startDate}`),
         endDate: toInputDate(`${dataEvent?.endDate}`),
-        isPublished: `${dataEvent?.isPublished}`,
+        isPublish: `${dataEvent?.isPublish}`,
         isFeatured: `${dataEvent?.isFeatured}`,
       });
     }
   }, [dataEvent, resetUpdateInfo]);
+
+  console.log("dataEvent :", dataEvent);
 
   useEffect(() => {
     if (isSuccessUpdate) {
@@ -174,59 +176,67 @@ const InfoTab = (props: PropTypes) => {
           </Skeleton>
 
           <Skeleton isLoaded={!!dataEvent} className="rounded-lg">
-            <Controller
-              name="isPublished"
-              control={controlUpdateInfo}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  label="Status"
-                  variant="bordered"
-                  labelPlacement="outside"
-                  isInvalid={errorsUpdateInfo.isPublished !== undefined}
-                  errorMessage={errorsUpdateInfo.isPublished?.message}
-                  defaultSelectedKeys={[
-                    dataEvent?.isPublished ? "true" : "false",
-                  ]}
-                  disallowEmptySelection
-                >
-                  <SelectItem key="true" textValue="Publish">
-                    Publish
-                  </SelectItem>
-                  <SelectItem key="false" textValue="Draft">
-                    Draft
-                  </SelectItem>
-                </Select>
-              )}
-            />
+            {dataEvent ? (
+              <Controller
+                name="isPublish"
+                control={controlUpdateInfo}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    label="Status"
+                    variant="bordered"
+                    labelPlacement="outside"
+                    isInvalid={errorsUpdateInfo.isPublish !== undefined}
+                    errorMessage={errorsUpdateInfo.isPublish?.message}
+                    defaultSelectedKeys={[
+                      dataEvent?.isPublish ? "true" : "false",
+                    ]}
+                    disallowEmptySelection
+                  >
+                    <SelectItem key="true" textValue="Publish">
+                      Publish
+                    </SelectItem>
+                    <SelectItem key="false" textValue="Draft">
+                      Draft
+                    </SelectItem>
+                  </Select>
+                )}
+              />
+            ) : (
+              <div className="w-full h-16"></div>
+            )}
           </Skeleton>
 
           <Skeleton isLoaded={!!dataEvent} className="rounded-lg">
-            <Controller
-              name="isFeatured"
-              control={controlUpdateInfo}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  label="Featured"
-                  variant="bordered"
-                  labelPlacement="outside"
-                  isInvalid={errorsUpdateInfo.isFeatured !== undefined}
-                  errorMessage={errorsUpdateInfo.isFeatured?.message}
-                  defaultSelectedKeys={[
-                    dataEvent?.isFeatured ? "true" : "false",
-                  ]}
-                  disallowEmptySelection
-                >
-                  <SelectItem key="true" textValue="Yes">
-                    Yes
-                  </SelectItem>
-                  <SelectItem key="false" textValue="No">
-                    No
-                  </SelectItem>
-                </Select>
-              )}
-            />
+            {dataEvent ? (
+              <Controller
+                name="isFeatured"
+                control={controlUpdateInfo}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    label="Featured"
+                    variant="bordered"
+                    labelPlacement="outside"
+                    isInvalid={errorsUpdateInfo.isFeatured !== undefined}
+                    errorMessage={errorsUpdateInfo.isFeatured?.message}
+                    defaultSelectedKeys={[
+                      dataEvent?.isFeatured ? "true" : "false",
+                    ]}
+                    disallowEmptySelection
+                  >
+                    <SelectItem key="true" textValue="Yes">
+                      Yes
+                    </SelectItem>
+                    <SelectItem key="false" textValue="No">
+                      No
+                    </SelectItem>
+                  </Select>
+                )}
+              />
+            ) : (
+              <div className="w-full h-16"></div>
+            )}
           </Skeleton>
 
           <Skeleton isLoaded={!!dataEvent?.description} className="rounded-lg">

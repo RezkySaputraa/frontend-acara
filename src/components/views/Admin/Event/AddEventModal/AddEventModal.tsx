@@ -158,15 +158,15 @@ const AddEventModal = (props: PropTypes) => {
                   )}
                 />
                 <Controller
-                  name="isPublished"
+                  name="isPublish"
                   control={control}
                   render={({ field }) => (
                     <Select
                       {...field}
                       label="Status"
                       variant="bordered"
-                      isInvalid={errors.isPublished !== undefined}
-                      errorMessage={errors.isPublished?.message}
+                      isInvalid={errors.isPublish !== undefined}
+                      errorMessage={errors.isPublish?.message}
                       disallowEmptySelection
                     >
                       <SelectItem key="true" textValue="Publish">
@@ -265,6 +265,19 @@ const AddEventModal = (props: PropTypes) => {
                   )}
                 />
                 <Controller
+                  name="address"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      label="Address"
+                      variant="bordered"
+                      isInvalid={errors.address !== undefined}
+                      errorMessage={errors.address?.message}
+                    ></Input>
+                  )}
+                />
+                <Controller
                   name="latitude"
                   control={control}
                   render={({ field }) => (
@@ -290,6 +303,7 @@ const AddEventModal = (props: PropTypes) => {
                     ></Input>
                   )}
                 />
+
               </div>
 
               <p className="text-sm font-bold">Cover</p>

@@ -45,6 +45,7 @@ const LocationTab = (props: PropTypes) => {
     if (dataEvent) {
       resetUpdateLocation({
         isOnline: `${dataEvent?.isOnline}`,
+        address: `${dataEvent?.location?.address}`,
         latitude: `${dataEvent?.location?.coordinates[0]}`,
         longitude: `${dataEvent?.location?.coordinates[1]}`,
         region: `${dataDefaultRegion}`,
@@ -71,30 +72,57 @@ const LocationTab = (props: PropTypes) => {
           className="flex flex-col gap-4"
           onSubmit={handleSubmitUpdateLocation(onUpdate)}
         >
-          <Skeleton isLoaded={!!dataEvent} className="rounded-lg">
+          <Skeleton
+            isLoaded={!!dataEvent?.location?.address}
+            className="rounded-lg"
+          >
             <Controller
-              name="isOnline"
+              name="address"
               control={controlUpdateLocation}
               render={({ field }) => (
-                <Select
+                <Input
                   {...field}
-                  label="Online / Offline"
-                  labelPlacement="outside"
+                  label="Address"
                   variant="bordered"
-                  isInvalid={errorsUpdateLocation.isOnline !== undefined}
-                  errorMessage={errorsUpdateLocation.isOnline?.message}
-                  defaultSelectedKeys={[dataEvent?.isOnline ? "true" : "false"]}
-                  disallowEmptySelection
-                >
-                  <SelectItem key="true" textValue="Online">
-                    Online
-                  </SelectItem>
-                  <SelectItem key="false" textValue="Offline">
-                    Offline
-                  </SelectItem>
-                </Select>
+                  labelPlacement="outside"
+                  type="text"
+                  isInvalid={errorsUpdateLocation.address !== undefined}
+                  errorMessage={errorsUpdateLocation.address?.message}
+                ></Input>
               )}
             />
+          </Skeleton>
+
+          <Skeleton isLoaded={!!dataEvent} className="rounded-lg">
+            {dataEvent ? (
+              <Controller
+                name="isOnline"
+                control={controlUpdateLocation}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    label="Online / Offline"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    isInvalid={errorsUpdateLocation.isOnline !== undefined}
+                    errorMessage={errorsUpdateLocation.isOnline?.message}
+                    defaultSelectedKeys={[
+                      dataEvent?.isOnline ? "true" : "false",
+                    ]}
+                    disallowEmptySelection
+                  >
+                    <SelectItem key="true" textValue="Online">
+                      Online
+                    </SelectItem>
+                    <SelectItem key="false" textValue="Offline">
+                      Offline
+                    </SelectItem>
+                  </Select>
+                )}
+              />
+            ) : (
+              <div className="w-full h-16"></div>
+            )}
           </Skeleton>
 
           <Skeleton
@@ -143,7 +171,7 @@ const LocationTab = (props: PropTypes) => {
             isLoaded={!!dataEvent?.location?.region && !isPendingDefaultRegion}
             className="rounded-lg"
           >
-            {!isPendingDefaultRegion ? (
+            {!isPendingDefaultRegion && dataDefaultRegion ? (
               <Controller
                 name="region"
                 control={controlUpdateLocation}
