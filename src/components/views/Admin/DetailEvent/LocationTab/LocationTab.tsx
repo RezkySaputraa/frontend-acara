@@ -5,7 +5,7 @@ import { Input } from "@heroui/input";
 import { Spinner } from "@heroui/spinner";
 import useLocationTab from "./useLocationTab";
 import { Controller } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IEventForm, IRegency } from "@/types/Event";
 import { Autocomplete, AutocompleteItem } from "@heroui/autocomplete";
 import { Select, SelectItem } from "@heroui/select";
@@ -39,7 +39,9 @@ const LocationTab = (props: PropTypes) => {
     dataRegion,
     handleSearchRegion,
     searchRegency,
+    setSearchRegency,
   } = useLocationTab();
+  const [inputRegion, setInputRegion] = useState(dataDefaultRegion);
 
   useEffect(() => {
     if (dataEvent) {
@@ -48,10 +50,17 @@ const LocationTab = (props: PropTypes) => {
         address: `${dataEvent?.location?.address}`,
         latitude: `${dataEvent?.location?.coordinates[0]}`,
         longitude: `${dataEvent?.location?.coordinates[1]}`,
-        region: `${dataDefaultRegion}`,
+        region: `${dataEvent?.location?.region}`,
       });
     }
   }, [dataEvent, resetUpdateLocation]);
+
+  useEffect(() => {
+    if (dataDefaultRegion) {
+      setSearchRegency("");
+      setInputRegion(dataDefaultRegion);
+    }
+  }, [dataDefaultRegion]);
 
   useEffect(() => {
     if (isSuccessUpdate) {
@@ -178,18 +187,26 @@ const LocationTab = (props: PropTypes) => {
                 render={({ field: { onChange, ...field } }) => (
                   <Autocomplete
                     {...field}
-                    defaultItems={
+                    items={
                       dataRegion?.data.data && searchRegency !== ""
                         ? dataRegion?.data.data
                         : []
                     }
-                    defaultInputValue={dataDefaultRegion}
                     label="City"
                     variant="bordered"
                     labelPlacement="outside"
-                    onInputChange={(search) => handleSearchRegion(search)}
+                    inputValue={inputRegion}
+                    onInputChange={(search) => {
+                      setInputRegion(search);
+                      handleSearchRegion(search);
+                    }}
                     isInvalid={errorsUpdateLocation.region !== undefined}
                     errorMessage={errorsUpdateLocation.region?.message}
+                    onBlur={() => {
+                      if (!inputRegion) {
+                        setInputRegion(dataDefaultRegion);
+                      }
+                    }}
                     onSelectionChange={(value) => onChange(value)}
                     placeholder="Select city here..."
                   >

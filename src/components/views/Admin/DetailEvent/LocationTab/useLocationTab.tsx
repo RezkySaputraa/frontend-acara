@@ -60,6 +60,7 @@ const useLocationTab = () => {
     setValueUpdateLocation,
 
     searchRegency,
+    setSearchRegency,
     handleSearchRegion,
     dataRegion,
   };
