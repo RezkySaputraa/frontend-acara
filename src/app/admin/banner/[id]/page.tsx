@@ -1,24 +1,24 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
-import DetailCategory from "@/components/views/Admin/DetailCategory";
+import DetailBanner from "@/components/views/Admin/DetailBanner";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Detail Category",
+  title: "Detail Banner",
   description: "Rezky Saputra Acara",
 };
 
-const AdminDetailCategoryPage = () => {
+const AdminDetailBannerPage = () => {
   return (
     <DashboardLayout
       type="admin"
       title={
-        typeof metadata.title === "string" ? metadata.title : "Detail Category"
+        typeof metadata.title === "string" ? metadata.title : "Detail Banner"
       }
-      description="Manage information for this category"
+      description="Manage information for this banner"
     >
-      <DetailCategory />
+      <DetailBanner />
     </DashboardLayout>
   );
 };
 
-export default AdminDetailCategoryPage;
+export default AdminDetailBannerPage;

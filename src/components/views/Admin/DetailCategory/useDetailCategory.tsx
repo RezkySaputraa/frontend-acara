@@ -12,7 +12,7 @@ const useDetailCategory = () => {
   const id = params?.id as string;
   const { setToaster } = useContext(ToasterContext);
 
-  const getCategoryById = async (id: string) => {
+  const getCategoryById = async () => {
     try {
       const { data } = await categoryServices.getCategoryById(id);
       return data.data;
@@ -22,7 +22,7 @@ const useDetailCategory = () => {
   };
   const { data: dataCategory, refetch: refetchCategory } = useQuery({
     queryKey: ["Category", id],
-    queryFn: () => getCategoryById(id),
+    queryFn: getCategoryById,
     enabled: !!id,
   });
 
