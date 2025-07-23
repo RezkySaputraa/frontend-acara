@@ -6,7 +6,7 @@ import {
   ModalHeader,
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
-import { Spinner } from "@heroui/react";
+import { Spinner } from "@heroui/spinner";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import useDeleteEventModal from "./useDeleteEventModal";
 

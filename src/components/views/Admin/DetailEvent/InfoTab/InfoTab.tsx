@@ -7,13 +7,9 @@ import useInfoTab from "./useInfoTab";
 import { Controller } from "react-hook-form";
 import { useEffect } from "react";
 import { IEventForm } from "@/types/Event";
-import {
-  Autocomplete,
-  AutocompleteItem,
-  DatePicker,
-  Select,
-  SelectItem,
-} from "@heroui/react";
+import { Select, SelectItem } from "@heroui/select";
+import { DatePicker } from "@heroui/date-picker";
+import { Autocomplete, AutocompleteItem } from "@heroui/autocomplete";
 import { ICategory } from "@/types/Category";
 import { toInputDate } from "@/utils/date";
 

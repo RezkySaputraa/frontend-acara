@@ -1,5 +1,4 @@
 import { ToasterContext } from "@/contexts/ToasterContext";
-import categoryServices from "@/services/category.service";
 import ticketServices from "@/services/ticket.service";
 import { useMutation } from "@tanstack/react-query";
 import { useContext } from "react";

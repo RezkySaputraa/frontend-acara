@@ -7,14 +7,14 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@heroui/modal";
-import { Input, Textarea } from "@heroui/input";
+import { Input } from "@heroui/input";
 import useAddBannerModal from "./useAddBannerModal";
 import { Controller } from "react-hook-form";
 import InputFile from "@/components/ui/InputFile";
 import { Button } from "@heroui/button";
 import { Spinner } from "@heroui/spinner";
 import { useEffect } from "react";
-import { Select, SelectItem } from "@heroui/react";
+import { Select, SelectItem } from "@heroui/select";
 
 interface PropTypes {
   isOpen: boolean;
