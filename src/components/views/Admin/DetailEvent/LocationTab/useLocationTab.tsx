@@ -24,7 +24,6 @@ const useLocationTab = () => {
     handleSubmit: handleSubmitUpdateLocation,
     formState: { errors: errorsUpdateLocation },
     reset: resetUpdateLocation,
-    setValue: setValueUpdateLocation,
   } = useForm({
     resolver: yupResolver(schemaUpdateLocation),
     defaultValues: {
@@ -57,8 +56,6 @@ const useLocationTab = () => {
     handleSubmitUpdateLocation,
     errorsUpdateLocation,
     resetUpdateLocation,
-    setValueUpdateLocation,
-
     searchRegency,
     setSearchRegency,
     handleSearchRegion,

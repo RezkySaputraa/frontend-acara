@@ -13,7 +13,6 @@ const useInfoTab = () => {
     handleSubmit: handleSubmitUpdateInfo,
     formState: { errors: errorsUpdateInfo },
     reset: resetUpdateInfo,
-    setValue: setValueUpdateInfo,
   } = useForm({
     resolver: yupResolver(schemaUpdateInfo),
     defaultValues: {
@@ -27,7 +26,6 @@ const useInfoTab = () => {
     handleSubmitUpdateInfo,
     errorsUpdateInfo,
     resetUpdateInfo,
-    setValueUpdateInfo,
   };
 };
 

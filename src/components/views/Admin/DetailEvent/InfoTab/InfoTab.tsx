@@ -50,8 +50,6 @@ const InfoTab = (props: PropTypes) => {
     }
   }, [dataEvent, resetUpdateInfo]);
 
-  console.log("dataEvent :", dataEvent);
-
   useEffect(() => {
     if (isSuccessUpdate) {
       resetUpdateInfo();

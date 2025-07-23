@@ -15,10 +15,10 @@ const schema = yup.object().shape({
   description: yup.string().required("Please input description "),
 });
 
-const useAddTicketModal = () => {
+const useUpdateTicketModal = (id: string) => {
   const { setToaster } = useContext(ToasterContext);
   const params = useParams();
-  const id = params?.id as string;
+  const idEvent = params?.id as string;
 
   const {
     control,
@@ -27,32 +27,39 @@ const useAddTicketModal = () => {
     reset,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      name: "",
+      price: "",
+      quantity: "",
+      description: "",
+    },
   });
-  const addTicket = async (payload: ITicket) => {
-    const res = await ticketServices.addTicket(payload);
+
+  const updateTicket = async (payload: ITicket) => {
+    const res = await ticketServices.updateTicket(id, payload);
     return res;
   };
 
   const {
-    mutate: mutateAddTicket,
-    isPending: isPendingMutateAddTicket,
-    isSuccess: isSuccessMutateAddTicket,
+    mutate: mutateUpdateTicket,
+    isPending: isPendingMutateUpdateTicket,
+    isSuccess: isSuccessMutateUpdateTicket,
   } = useMutation({
-    mutationFn: addTicket,
+    mutationFn: updateTicket,
     onError: (error) => {
       setToaster({ type: "error", message: error.message });
     },
     onSuccess: () => {
-      setToaster({ type: "success", message: "Add ticket success" });
+      setToaster({ type: "success", message: "Success update ticket" });
       reset();
     },
   });
 
-  const handleAddTicket = (data: ITicket) => {
-    data.events = id;
+  const handleUpdateTicket = (data: ITicket) => {
+    data.events = idEvent;
     data.price = Number(data.price);
     data.quantity = Number(data.quantity);
-    mutateAddTicket(data);
+    mutateUpdateTicket(data);
   };
 
   return {
@@ -60,10 +67,10 @@ const useAddTicketModal = () => {
     errors,
     reset,
     handleSubmitForm,
-    handleAddTicket,
-    isPendingMutateAddTicket,
-    isSuccessMutateAddTicket,
+    handleUpdateTicket,
+    isPendingMutateUpdateTicket,
+    isSuccessMutateUpdateTicket,
   };
 };
 
-export default useAddTicketModal;
+export default useUpdateTicketModal;
