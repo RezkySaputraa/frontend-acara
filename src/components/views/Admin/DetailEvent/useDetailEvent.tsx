@@ -13,7 +13,7 @@ const useDetailEvent = () => {
   const id = params?.id as string;
   const { setToaster } = useContext(ToasterContext);
 
-  const getEventById = async (id: string) => {
+  const getEventById = async () => {
     try {
       const { data } = await eventServices.getEventById(id);
       return data.data;
@@ -21,9 +21,10 @@ const useDetailEvent = () => {
       throw error;
     }
   };
+
   const { data: dataEvent, refetch: refetchEvent } = useQuery({
     queryKey: ["Event", id],
-    queryFn: () => getEventById(id),
+    queryFn: getEventById,
     enabled: !!id,
   });
 
