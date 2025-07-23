@@ -2,20 +2,25 @@ import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { useDisclosure } from "@heroui/use-disclosure";
 import { convertIDR } from "@/utils/currency";
-import { Fragment, Key, ReactNode, useCallback } from "react";
+import { Fragment, Key, ReactNode, useCallback, useState } from "react";
 import DropdownAction from "@/components/commons/DropdownAction";
 import DataTable from "@/components/ui/DataTable";
 import { COLUMN_LISTS_TICKET } from "./TicketTab.constants";
 import useTicketTab from "./useTicketTab";
 import AddTicketModal from "./AddTicketModal";
+import DeleteTicketModal from "./DeleteTicketModal";
+import { ITicket } from "@/types/Ticket";
 
 const TicketTab = () => {
+  const { dataTicket, refetchTicket, isPendingTicket, isRefetchingTicket } =
+    useTicketTab();
   const addTicketModal = useDisclosure();
   const deleteTicketModal = useDisclosure();
   const updateTicketModal = useDisclosure();
 
-  const { dataTicket, refetchTicket, isPendingTicket, isRefetchingTicket } =
-    useTicketTab();
+  const [selectedDataTicket, setSelectedDataTicket] = useState<ITicket | null>(
+    null,
+  );
 
   const renderCell = useCallback(
     (ticket: Record<string, unknown>, columnKey: Key) => {
@@ -29,9 +34,10 @@ const TicketTab = () => {
           return (
             <DropdownAction
               onPressButtonDetail={() => {
-                deleteTicketModal.onOpen();
+                updateTicketModal.onOpen();
               }}
               onPressButtonDelete={() => {
+                setSelectedDataTicket(ticket as ITicket);
                 deleteTicketModal.onOpen();
               }}
             ></DropdownAction>
@@ -72,6 +78,13 @@ const TicketTab = () => {
         </CardBody>
       </Card>
       <AddTicketModal {...addTicketModal} refetchTicket={refetchTicket} />
+
+      <DeleteTicketModal
+        {...deleteTicketModal}
+        selectedDataTicket={selectedDataTicket}
+        setSelectedDataTicket={setSelectedDataTicket}
+        refetchTicket={refetchTicket}
+      />
     </Fragment>
   );
 };
